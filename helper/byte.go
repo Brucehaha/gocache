@@ -5,3 +5,4 @@ func Copy(src []byte) []byte {
 	copy(dst, src)
 	return dst
 }
+

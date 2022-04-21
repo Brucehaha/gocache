@@ -1,6 +1,5 @@
 package caches
 
-
 type Status struct {
 	// numbers or key value pairs in cache
 	Count int `json:"count"`
@@ -9,27 +8,28 @@ type Status struct {
 	// ValueSize record total size of the value in cache
 	ValueSize int64 `json:"valueSize"`
 }
+
 func newStatus() *Status {
 	return &Status{
-		Count: 0,
-		KeySize: 0,
+		Count:     0,
+		KeySize:   0,
 		ValueSize: 0,
 	}
 }
 
-func(s *Status) addEntry(key string, value []byte){
-	s.Count ++
+func (s *Status) addEntry(key string, value []byte) {
+	s.Count++
 	s.KeySize += int64(len(key))
 	s.ValueSize += int64(len(value))
 }
 
-
-func(s *Status) subEntry(key string, value []byte){
-	s--
+func (s *Status) subEntry(key string, value []byte) {
+	s.Count--
 	s.KeySize -= int64(len(key))
 	s.ValueSize -= int64(len(value))
 }
+
 // entrySize return sum of keySize and ValueSize
 func (s *Status) entrySize() int64 {
-    return s.KeySize + s.ValueSize
+	return s.KeySize + s.ValueSize
 }
